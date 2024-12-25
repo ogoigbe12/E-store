@@ -24,6 +24,7 @@ export default function RootLayout() {
 
   return (
     <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="(modal)/signin"
@@ -37,7 +38,7 @@ export default function RootLayout() {
         name="(modal)/signup"
         options={{
           presentation: "modal",
-          headerTitle: "Signup",
+          headerTitle: "Sign Up",
           headerTitleAlign: "center",
         }}
       />
