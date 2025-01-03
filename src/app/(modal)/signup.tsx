@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Colors } from "@/src/constants/Colors";
+import { Colors } from "@/src/constants/colors";
 import InputField from "@/src/components/InputField";
 import { Link } from "expo-router";
 import SocialLoginButton from "@/src/components/SocialLoginButton";
@@ -38,15 +38,15 @@ const SignUpScreen = (props: Props) => {
       </TouchableOpacity>
       <Text style={styles.loginText}>
         Already have an account?{" "}
-        <Link href={"/signin"} asChild>
+        <Link href={"/(modal)/signin"} asChild>
           <TouchableOpacity>
             <Text style={styles.loginTextSpan}>SignIn</Text>
           </TouchableOpacity>
         </Link>
       </Text>
-      <View style={styles.divider}/>
+      <View style={styles.divider} />
 
-      <SocialLoginButton emailHref={'/signin'}/>
+      <SocialLoginButton emailHref={"/(modal)/signin"} />
     </View>
   );
 };
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
   divider: {
     borderColor: Colors.gray,
     borderTopWidth: StyleSheet.hairlineWidth,
-    width: '30%',
+    width: "30%",
     marginBottom: 30,
-  }
+  },
 });
 
 export default SignUpScreen;
