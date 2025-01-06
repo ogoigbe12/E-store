@@ -1,49 +1,61 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ProductType } from "@/src/types/type";
+import { CategoryType, ProductType } from "@/src/types/type";
+import ProductItem from "@/src/components/ProductsItem";
+import { Colors } from "@/src/constants/colors";
+import ProductsList from "@/src/components/ProductsList";
+import Categories from "@/src/components/Categories";
+import FlashSales from "@/src/components/FlashSales";
 
 type Props = {};
 
 const HomeScreen = (props: Props) => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getProducts();
+    getCategories();
   }, []);
-  console.log(products);
   const getProducts = async () => {
-    const URL = 'https://fakestoreapi.com/products';
+    const URL = "https://e-json.onrender.com/products";
     // const response = await fetch(URL);
     const response = await axios.get(URL);
     // const data = await response.json();
-    // const data = response.data;
-    console.log(response.data);
-    setProducts(response.data);
+    const data = response.data;
+    // console.log(data);
+    setProducts(data);
     setIsLoading(false);
   };
-  if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
-  }
-
+  const getCategories = async () => {
+    const URL = "https://e-json.onrender.com/categories";
+    const response = await axios.get(URL);
+    // const data = response.data;
+    console.log(response, "categories");
+    setCategories(response.data);
+    setIsLoading(false);
+  };
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({index, item }) => <Text>{item.title}</Text>}/>
-    </View>
+    <>
+    <Categories categories={categories} />
+    <FlashSales/>
+    <ProductsList products={products} />
+    </>
   );
 };
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  
 });
 export default HomeScreen;
