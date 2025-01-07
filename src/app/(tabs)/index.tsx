@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -20,6 +21,7 @@ type Props = {};
 
 const HomeScreen = (props: Props) => {
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [saleProducts, setSaleProducts] = useState<ProductType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -27,6 +29,7 @@ const HomeScreen = (props: Props) => {
   useEffect(() => {
     getProducts();
     getCategories();
+    getSaleProducts();
   }, []);
   const getProducts = async () => {
     const URL = "https://e-json.onrender.com/products";
@@ -46,16 +49,43 @@ const HomeScreen = (props: Props) => {
     setCategories(response.data);
     setIsLoading(false);
   };
+
+  const getSaleProducts = async () => {
+    const URL = "https://e-json.onrender.com/saleProducts";
+    const response = await axios.get(URL);
+    // const data = response.data;
+    console.log(response, "categories");
+    setSaleProducts(response.data);
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
   return (
     <>
+    <ScrollView>
     <Categories categories={categories} />
-    <FlashSales/>
-    <ProductsList products={products} />
+    <FlashSales products={saleProducts}/>
+    <View style={{marginHorizontal: 20, marginBottom: 10}}>
+      <Image source={require('@/assets/images/sale-banner.jpg')} style={{width: '100%', height: 150, borderRadius: 15}} />
+    </View>
+    {/* fixing VirtualizedLists should never be nested inside plain ScrollViews */}
+    <ProductsList products={products} flatList={false} />
+    </ScrollView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 export default HomeScreen;
