@@ -31,8 +31,7 @@ const ProductDetails = (props: Props) => {
     setProduct(data);
   };
   return (
-    <ScrollView
-      >
+    <ScrollView>
       {product && <ImageSlider imageList={product.images} />}
       {product && (
         <View style={styles.container}>
@@ -145,6 +144,7 @@ const ProductDetails = (props: Props) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginBottom: 50,
     paddingHorizontal: 20,
   },
   ratingWrapper: {
