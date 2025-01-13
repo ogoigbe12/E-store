@@ -3,13 +3,15 @@ import React from "react";
 import { ProductType } from "../types/type";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../constants/colors";
-
+import { Link, router } from "expo-router";
 type Props = {
   item: ProductType;
 };
 const width = Dimensions.get("window").width - 40;
 const productItem = ({ item }: Props) => {
   return (
+    <Link href={`/product-details/${item.id}`} asChild>
+      <TouchableOpacity>
     <View style={styles.container}>
       <Image source={{ uri: item.images[0] }} style={styles.productImage} />
       <TouchableOpacity style={styles.bookMarkBtn}>
@@ -24,6 +26,8 @@ const productItem = ({ item }: Props) => {
       </View> 
       <Text style={styles.title}>{item.title}</Text>
     </View>
+    </TouchableOpacity>
+    </Link>
   );
 };
 const styles = StyleSheet.create({
