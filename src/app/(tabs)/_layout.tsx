@@ -26,15 +26,18 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: "Explore",
-          // tabBarIcon: ({color}) => (
-          //   <Ionicons name='search-outline' size={22} color={color} />
-          // )
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTransparent: true,
         }}
       />
       <Tabs.Screen
         name="notifications"
         options={{
           title: "Notification",
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTransparent: true,
           // tabBarIcon: ({color}) => (
           //   <Ionicons name='notifications-outline' size={22} color={color} />
           // )
@@ -44,7 +47,10 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: "Cart",
-          tabBarBadge: 1,
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTransparent: true,
+          // tabBarBadge: 1,
           // tabBarIcon: ({color}) => (
           //   <Ionicons name='cart-outline' size={22} color={color} />
           // )
@@ -54,6 +60,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTransparent: true,
           // tabBarIcon: ({color}) => (
           //   <Ionicons name='person-outline' size={22} color={color} />
           // )
