@@ -1,8 +1,11 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { TouchableOpacity } from "react-native";
 import "react-native-reanimated";
+import { Colors } from "../constants/colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -40,6 +43,19 @@ export default function RootLayout() {
           presentation: "modal",
           headerTitle: "Sign Up",
           headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="product-details/[id]"
+        options={{
+          title: "Product Details",
+          headerTitleAlign: "center",
+          headerTransparent: true,
+          headerRight: () => (
+            <TouchableOpacity>
+              <Ionicons name="cart-outline" size={24} color={Colors.black} />
+            </TouchableOpacity>
+          )
         }}
       />
     </Stack>

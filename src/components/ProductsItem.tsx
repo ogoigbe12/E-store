@@ -6,11 +6,15 @@ import { Colors } from "../constants/colors";
 import { Link, router } from "expo-router";
 type Props = {
   item: ProductType;
+  productType: 'sale' | 'regular'
 };
 const width = Dimensions.get("window").width - 40;
-const productItem = ({ item }: Props) => {
+const productItem = ({ item, productType }: Props) => {
   return (
-    <Link href={`/product-details/${item.id}`} asChild>
+    <Link href={{
+      pathname: '/product-details/[id]',
+      params: {id: item.id, productType: productType}
+    }} asChild>
       <TouchableOpacity>
     <View style={styles.container}>
       <Image source={{ uri: item.images[0] }} style={styles.productImage} />

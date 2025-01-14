@@ -80,7 +80,7 @@ const FlashSales = ({products}: Props) => {
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item, index }) => (
                 <View style={{marginRight: 20}}>
-                <ProductsItem item={item} />
+                <ProductsItem item={item} productType="sale"/>
                 </View>
               )}
             />
