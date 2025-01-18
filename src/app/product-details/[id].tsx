@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     flexDirection: "row",
     gap: 10,
-    zIndex: -1
+    overflow: "hidden",
   },
   button: {
     flex: 1,
